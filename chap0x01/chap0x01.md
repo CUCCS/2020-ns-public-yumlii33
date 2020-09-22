@@ -37,12 +37,26 @@
 ### 1. 创建安装虚拟机
 
 * 安装`windows xp-sp3`
+
+  * 创建虚拟介质的时候选择`vmdk`，否则可能创建不成功。
+
 * 安装`Debian Buster`
+
+  * 在安装过程中选择「要安装的软件」时，不需要选择任何图形化界面的包，只需要安装一个 OpenSSH Server 和 standard system utilities。
+
+  * 安装过程选择国内源，否则下载软件的速度很慢。
+
 * 安装`Kali`
 
-### 2. 配置网络
+### 2. 虚拟硬盘配置成多重加载并创建拓扑图里用到的机器
 
+* ![image-20200922095552479](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\多重加载虚拟硬盘.png)
 
+* 创建多台机器，选择`已有的虚拟硬盘`，从多重加载的虚拟硬盘创建。
+
+  ![image-20200922095851653](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\拓扑图机器.png)
+
+  ![image-20200922100206746](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\多台主机详细设置.png)
 
 ## 参考资料
 

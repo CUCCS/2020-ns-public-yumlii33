@@ -17,7 +17,7 @@
 
 - 虚拟硬盘配置成多重加载，效果如下图所示；
 
-![img](\img\vb-multi-attach.png)
+  ![img](\img\vb-multi-attach.png)
 
 - 搭建满足如下拓扑图所示的虚拟机网络拓扑；
 
@@ -50,13 +50,36 @@
 
 ### 2. 虚拟硬盘配置成多重加载并创建拓扑图里用到的机器
 
-* ![image-20200922095552479](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\多重加载虚拟硬盘.png)
+* 设置多重加载
+
+  ![image-20200922095552479](\img\多重加载虚拟硬盘.png)
 
 * 创建多台机器，选择`已有的虚拟硬盘`，从多重加载的虚拟硬盘创建。
 
-  ![image-20200922095851653](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\拓扑图机器.png)
+  ![image-20200922095851653](\img\拓扑图机器.png)
 
-  ![image-20200922100206746](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\多台主机详细设置.png)
+  ![image-20200922100206746](\img\多台主机详细设置.png)
+
+### 3. 配置网关
+
+* 配置网关主机的网络
+
+  ![image-20200929103503660](img\网关网络设置.png)
+
+* 修改`/etc/network/interfaces`，使用命令`/etc/init.d/networking restart`重新启动网络（或者`/sbin/ifdown `和`/sbin/ifup `）先启用enp0s8，方便使用`ssh`连接网关主机
+
+* 粘贴`etc/network/interfaces`配置文件，重新启动网卡
+
+  ![image-20200929115353311](\img\etc-network-interfaces.png)
+
+* 配置好的网关`ip`
+
+  ![image-20200929115248239](\img\网关ip.png)
+
+### 4、配置`intnet1`
+
+
 
 ## 参考资料
 
+* [c4pr1c3/diff dnsmasq.conf dnsmasq.conf.bak](https://gist.github.com/c4pr1c3/8d1a4550aa550fabcbfb33fad9718db1)

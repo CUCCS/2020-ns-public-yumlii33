@@ -17,68 +17,209 @@
 
 - 虚拟硬盘配置成多重加载，效果如下图所示；
 
-  ![img](\img\vb-multi-attach.png)
+  ![img](/img/vb-multi-attach.png)
 
 - 搭建满足如下拓扑图所示的虚拟机网络拓扑；
 
-![img](\img\vb-exp-layout.png)
+  ![img](/img/vb-exp-layout.png)
 
 > 根据实验宿主机的性能条件，可以适度精简靶机数量
 
 - 完成以下网络连通性测试；
-  - [ ] 靶机可以直接访问攻击者主机
-  - [ ] 攻击者主机无法直接访问靶机
-  - [ ] 网关可以直接访问攻击者主机和靶机
-  - [ ] 靶机的所有对外上下行流量必须经过网关
-  - [ ] 所有节点均可以访问互联网
+  - [x] 靶机可以直接访问攻击者主机
+  - [x] 攻击者主机无法直接访问靶机
+  - [x] 网关可以直接访问攻击者主机和靶机
+  - [x] 靶机的所有对外上下行流量必须经过网关
+  - [x] 所有节点均可以访问互联网
 
 ## 实验步骤
 
-### 1. 创建安装虚拟机
+### 1、创建安装虚拟机
+
+基本步骤和上学期《linux网络管理》课程第一次安装`ubuntu18.04`的步骤一致，一些差异和要注意的点在下面列出。
 
 * 安装`windows xp-sp3`
 
   * 创建虚拟介质的时候选择`vmdk`，否则可能创建不成功。
-
 * 安装`Debian Buster`
 
   * 在安装过程中选择「要安装的软件」时，不需要选择任何图形化界面的包，只需要安装一个 OpenSSH Server 和 standard system utilities。
 
   * 安装过程选择国内源，否则下载软件的速度很慢。
-
 * 安装`Kali`
+  * 新建虚拟机选择版本时没有`kali`选项，选择`Debian`。
 
-### 2. 虚拟硬盘配置成多重加载并创建拓扑图里用到的机器
+### 2、虚拟硬盘配置成多重加载并创建拓扑图里用到的机器
 
-* 设置多重加载
+* 虚拟介质设置成`多重加载`
 
-  ![image-20200922095552479](\img\多重加载虚拟硬盘.png)
+  ![image-20200922095552479](/img/多重加载虚拟硬盘.png)
 
-* 创建多台机器，选择`已有的虚拟硬盘`，从多重加载的虚拟硬盘创建。
+* 创建多台机器，选择`已有的虚拟硬盘`，从多重加载的虚拟硬盘创建
 
-  ![image-20200922095851653](\img\拓扑图机器.png)
+  ![image-20200922095851653](/img/拓扑图机器.png)
 
-  ![image-20200922100206746](\img\多台主机详细设置.png)
+  ![image-20200922100206746](/img/多台主机详细设置.png)
 
-### 3. 配置网关
+### 3、配置网关主机
 
-* 配置网关主机的网络
+#### 3.1配置网关主机的网卡
 
-  ![image-20200929103503660](img\网关网络设置.png)
+* NET网络
+* Host-Only网络
+* 内部网络（intnet1)
+* 内部网络（intnet2)
 
-* 修改`/etc/network/interfaces`，使用命令`/etc/init.d/networking restart`重新启动网络（或者`/sbin/ifdown `和`/sbin/ifup `）先启用enp0s8，方便使用`ssh`连接网关主机
+![image-20200930094529828](/img/网关网络设置.png)
 
-* 粘贴`etc/network/interfaces`配置文件，重新启动网卡
+#### 3.2配置网关转发规则
 
-  ![image-20200929115353311](\img\etc-network-interfaces.png)
+* 修改`/etc/network/interfaces`，使用命令`/etc/init.d/networking restart`重新启动网络（或者使用`/sbin/ifdown `和`/sbin/ifup `）。先启用enp0s8，方便使用`ssh`连接网关主机。
 
-* 配置好的网关`ip`
+* 修改`etc/network/interfaces`配置文件，重新启动网卡（`enp0s3`, `enp0s8`, `enp0s9`, `enp0s10`）
 
-  ![image-20200929115248239](\img\网关ip.png)
+  ![image-20200929115353311](/img/etc-network-interfaces.png)
 
-### 4、配置`intnet1`
+* 配置好的网关网络详细信息如下
 
+  ![image-20200929115248239](/img/网关ip.png)
 
+#### 3.3配置`dnsmasq`
+
+* 安装`dnsmasq`：`apt-get install dnsmasq`
+
+* 添加配置文件
+
+  ```
+  # /etc/dnsmasq.d/gw-enp010.conf
+  interface=enp0s10
+  dhcp-range=172.16.222.100,172.16.222.150,240h
+  ```
+
+  ```
+  # /etc/dnsmasq.d/gw-enp09.conf
+  interface=enp0s9
+  dhcp-range=172.16.111.100,172.16.111.150,240h
+  ```
+
+* 修改主配置文件
+
+  ```
+  # /etc/dnsmasq.conf
+  # diff dnsmasq.conf dnsmasq.conf.bak
+  
+  661,662c661
+  < log-queries
+  < log-facility=/var/log/dnsmasq.log
+  ---
+  > #log-queries
+  665c664
+  < log-dhcp
+  ---
+  > #log-dhcp
+  ```
+
+### 4、配置`intnet1`里的靶机
+
+#### 4.1Victim-XP-1
+
+* 设置网络->`内部网络`->`intnet1` （控制芯片没有更改也可以在虚拟机里看到网卡，所以没有修改控制芯片）
+
+  ![image-20200930095317562](/img/xp-1-网络设置.png)
+
+* 因为前面已经设置了`dnsmasq`，所以自动获取正确的IP地址
+
+  ![image-20200930150822764](/img/ip-xp-1.png)
+
+#### 4.2Victim-Kali-1
+
+* 设置网络->`内部网络`->`intnet1`
+
+* IP地址
+
+  ![image-20200930152321054](/img/ip-kali-1.png)
+
+### 5、配置`intnet2`里的靶机
+
+#### 5.1Victim-XP-2
+
+* 设置网络->`内部网络`->`intnet2`
+
+* IP地址
+
+  ![image-20200930151844727](/img/ip-xp-2.png)
+
+#### 5.2Victim-DEbian-2
+
+* 设置网络->`内部网络`->`intnet2`
+
+* IP地址
+
+  ![image-20200930150932230](/img/ip-debian-2.png)
+
+### 6. 配置`Attacker-Kali`攻击者主机
+
+* 网络选择`net network`，名称和网关的`net network`网络的名称一致。
+
+  ![image-20200930151615790](/img/Attacker-Kali-网卡设置.png)
+
+* IP地址
+
+  ![image-20200930152426767](/img/ip-kali-attacker.png)
+
+### 7. 连通性测试
+
+![image-20200930141414783](/img/连通性测试-四台代表机器.png)
+
+#### 7.1靶机可以直接访问攻击者主机
+
+![image-20200930141608792](/img/连通性测试-靶机访问攻击者主机.png)
+
+#### 7.2攻击者主机无法直接访问靶机
+
+![image-20200930141835832](/img/连通性测试-攻击者主机无法直接访问靶机.png)
+
+#### 7.3网关可以直接访问攻击者主机和靶机
+
+![image-20200930142055009](/img/连通性测试-网关可以直接访问攻击者主机和靶机.png)
+
+#### 7.4靶机的所有对外上下行流量必须经过网关
+
+1. 预装`tmux`和`tcpdump`，方便后续查看记录
+
+2. `tcpdump -i enp0s10 -n -w 20200930.1.pcap`：将输出存入数据包`20200930.xp.1.pcap`
+
+   ![image-20200930144903327](/img/连通性测试-将记录输入数据包.png)
+
+3. 将数据包拷贝到windows主机，使用`Wireshark` 查看分析
+
+   `scp molly@192.168.56.106:/home/molly/20200930.xp.1.pcap  ./`
+
+#### 7.5所有节点均可以访问互联网
+
+![image-20200930142320335](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\连通性测试-所有节点均可以访问互联网.png)
+
+## Q&A
+
+* Q：`ipconfig /renew` 失败
+
+  A：http://www.imooc.com/wenda/detail/512074 ，没关固定分配。
+
+* Q：Attacker和GW的net网络都是`10.0.2.15`
+
+  ![image-20200930004926637](/img/NAT模式ip一样.png)
+
+  A：使用命令` /sbin/ifdown enp0s3 && /sbin/ifup enp0s3`后解决：
+
+  ![image-20200930004822274](/img/更新enp0s3的ip.png)
+
+* Q：靶机和Attacker都可以`ping`通网关的`Host-Only`网络的`IP`地址，老师课上实验不能`ping`通。
+
+  A：我是先配置完dnsmasq，会不会有影响？应该是因为我的网络设置的是nat网络，而不是NAT？
+
+* Q：Attacker可以ping通GW？
+
+* A：可以。
 
 ## 参考资料
 

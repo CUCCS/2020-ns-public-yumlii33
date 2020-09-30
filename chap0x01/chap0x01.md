@@ -17,11 +17,11 @@
 
 - 虚拟硬盘配置成多重加载，效果如下图所示；
 
-  ![img](/img/vb-multi-attach.png)
+  ![img](/chap0x01/img/vb-multi-attach.png)
 
 - 搭建满足如下拓扑图所示的虚拟机网络拓扑；
 
-  ![img](/img/vb-exp-layout.png)
+  ![img](/chap0x01/img/vb-exp-layout.png)
 
 > 根据实验宿主机的性能条件，可以适度精简靶机数量
 
@@ -53,13 +53,13 @@
 
 * 虚拟介质设置成`多重加载`
 
-  ![image-20200922095552479](/img/多重加载虚拟硬盘.png)
+  ![image-20200922095552479](/chap0x01/img/多重加载虚拟硬盘.png)
 
 * 创建多台机器，选择`已有的虚拟硬盘`，从多重加载的虚拟硬盘创建
 
-  ![image-20200922095851653](/img/拓扑图机器.png)
+  ![image-20200922095851653](/chap0x01/img/拓扑图机器.png)
 
-  ![image-20200922100206746](/img/多台主机详细设置.png)
+  ![image-20200922100206746](/chap0x01/img/多台主机详细设置.png)
 
 ### 3、配置网关主机
 
@@ -70,7 +70,7 @@
 * 内部网络（intnet1)
 * 内部网络（intnet2)
 
-![image-20200930094529828](/img/网关网络设置.png)
+![image-20200930094529828](/chap0x01/img/网关网络设置.png)
 
 #### 3.2配置网关转发规则
 
@@ -78,11 +78,11 @@
 
 * 修改`etc/network/interfaces`配置文件，重新启动网卡（`enp0s3`, `enp0s8`, `enp0s9`, `enp0s10`）
 
-  ![image-20200929115353311](/img/etc-network-interfaces.png)
+  ![image-20200929115353311](/chap0x01/img/etc-network-interfaces.png)
 
 * 配置好的网关网络详细信息如下
 
-  ![image-20200929115248239](/img/网关ip.png)
+  ![image-20200929115248239](/chap0x01/img/网关ip.png)
 
 #### 3.3配置`dnsmasq`
 
@@ -125,11 +125,11 @@
 
 * 设置网络->`内部网络`->`intnet1` （控制芯片没有更改也可以在虚拟机里看到网卡，所以没有修改控制芯片）
 
-  ![image-20200930095317562](/img/xp-1-网络设置.png)
+  ![image-20200930095317562](/chap0x01/img/xp-1-网络设置.png)
 
 * 因为前面已经设置了`dnsmasq`，所以自动获取正确的IP地址
 
-  ![image-20200930150822764](/img/ip-xp-1.png)
+  ![image-20200930150822764](/chap0x01/img/ip-xp-1.png)
 
 #### 4.2Victim-Kali-1
 
@@ -137,7 +137,7 @@
 
 * IP地址
 
-  ![image-20200930152321054](/img/ip-kali-1.png)
+  ![image-20200930152321054](/chap0x01/img/ip-kali-1.png)
 
 ### 5、配置`intnet2`里的靶机
 
@@ -147,7 +147,7 @@
 
 * IP地址
 
-  ![image-20200930151844727](/img/ip-xp-2.png)
+  ![image-20200930151844727](/chap0x01/img/ip-xp-2.png)
 
 #### 5.2Victim-DEbian-2
 
@@ -155,33 +155,33 @@
 
 * IP地址
 
-  ![image-20200930150932230](/img/ip-debian-2.png)
+  ![image-20200930150932230](/chap0x01/img/ip-debian-2.png)
 
 ### 6. 配置`Attacker-Kali`攻击者主机
 
 * 网络选择`net network`，名称和网关的`net network`网络的名称一致。
 
-  ![image-20200930151615790](/img/Attacker-Kali-网卡设置.png)
+  ![image-20200930151615790](/chap0x01/img/Attacker-Kali-网卡设置.png)
 
 * IP地址
 
-  ![image-20200930152426767](/img/ip-kali-attacker.png)
+  ![image-20200930152426767](/chap0x01/img/ip-kali-attacker.png)
 
 ### 7. 连通性测试
 
-![image-20200930141414783](/img/连通性测试-四台代表机器.png)
+![image-20200930141414783](/chap0x01/img/连通性测试-四台代表机器.png)
 
 #### 7.1靶机可以直接访问攻击者主机
 
-![image-20200930141608792](/img/连通性测试-靶机访问攻击者主机.png)
+![image-20200930141608792](/chap0x01/img/连通性测试-靶机访问攻击者主机.png)
 
 #### 7.2攻击者主机无法直接访问靶机
 
-![image-20200930141835832](/img/连通性测试-攻击者主机无法直接访问靶机.png)
+![image-20200930141835832](/chap0x01/img/连通性测试-攻击者主机无法直接访问靶机.png)
 
 #### 7.3网关可以直接访问攻击者主机和靶机
 
-![image-20200930142055009](/img/连通性测试-网关可以直接访问攻击者主机和靶机.png)
+![image-20200930142055009](/chap0x01/img/连通性测试-网关可以直接访问攻击者主机和靶机.png)
 
 #### 7.4靶机的所有对外上下行流量必须经过网关
 
@@ -189,7 +189,7 @@
 
 2. `tcpdump -i enp0s10 -n -w 20200930.1.pcap`：将输出存入数据包`20200930.xp.1.pcap`
 
-   ![image-20200930144903327](/img/连通性测试-将记录输入数据包.png)
+   ![image-20200930144903327](/chap0x01/img/连通性测试-将记录输入数据包.png)
 
 3. 将数据包拷贝到windows主机，使用`Wireshark` 查看分析
 
@@ -197,7 +197,7 @@
 
 #### 7.5所有节点均可以访问互联网
 
-![image-20200930142320335](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x01\img\连通性测试-所有节点均可以访问互联网.png)
+![image-20200930142320335](/chap0x01/img/连通性测试-所有节点均可以访问互联网.png)
 
 ## Q&A
 
@@ -207,11 +207,11 @@
 
 * Q：Attacker和GW的net网络都是`10.0.2.15`
 
-  ![image-20200930004926637](/img/NAT模式ip一样.png)
+  ![image-20200930004926637](/chap0x01/img/NAT模式ip一样.png)
 
   A：使用命令` /sbin/ifdown enp0s3 && /sbin/ifup enp0s3`后解决：
 
-  ![image-20200930004822274](/img/更新enp0s3的ip.png)
+  ![image-20200930004822274](/chap0x01/img/更新enp0s3的ip.png)
 
 * Q：靶机和Attacker都可以`ping`通网关的`Host-Only`网络的`IP`地址，老师课上实验不能`ping`通。
 
@@ -224,3 +224,4 @@
 ## 参考资料
 
 * [c4pr1c3/diff dnsmasq.conf dnsmasq.conf.bak](https://gist.github.com/c4pr1c3/8d1a4550aa550fabcbfb33fad9718db1)
+* https://c4pr1c3.github.io/cuc-ns/chap0x01/exp.html

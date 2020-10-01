@@ -198,6 +198,8 @@
 3. 将数据包拷贝到`windows`主机，使用`Wireshark` 查看分析
 
    `scp molly@192.168.56.106:/home/molly/20200930.xp.1.pcap  ./`
+   
+   ![image-20201001150155222](/img/wireshark分析数据包.png)
 
 #### 7.5所有节点均可以访问互联网
 

@@ -207,7 +207,7 @@
 
 * Q：`ipconfig /renew` 失败
 
-  A：http://www.imooc.com/wenda/detail/512074 ，没关固定分配。
+  A： 在测试实验时，设置了固定分配，没关固定分配。
 
 * Q：`Attacker`和`GW`的`net网络`都是`10.0.2.15`
 
@@ -231,6 +231,7 @@
 
 * [c4pr1c3/diff dnsmasq.conf dnsmasq.conf.bak](https://gist.github.com/c4pr1c3/8d1a4550aa550fabcbfb33fad9718db1)
 * [ 基于 VirtualBox 的网络攻防基础环境搭建](https://c4pr1c3.github.io/cuc-ns/chap0x01/exp.html)
+* [ipconfig /renew失败为什么呢？](http://www.imooc.com/wenda/detail/512074)
 
 ## 补充：课后问答题
 

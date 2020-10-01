@@ -86,6 +86,8 @@
 
 #### 3.3配置`dnsmasq`
 
+* 配置`dnsmasq`可以实现自动获取`IP`地址，可以实现域名解析。
+
 * 安装`dnsmasq`：`apt-get install dnsmasq`
 
 * 添加配置文件
@@ -217,7 +219,9 @@
 
 * Q：靶机和`Attacker`都可以`ping`通网关的`Host-Only`网络的`IP`地址，老师课上实验不能`ping`通。
 
-  A：我是先配置完dnsmasq，会不会有影响？应该是因为我的网络设置的是`nat网络`，而不是`NAT`？
+  A：理解错误。能`ping`通网关主机，但是`ping`不通`Host-Only`网络。
+
+  ![image-20201001143439195](/img/pingHostOnly.png)
 
 * Q：`Attacker`可以`ping`通`GW`？
 

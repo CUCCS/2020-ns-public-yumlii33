@@ -74,7 +74,7 @@
 
 #### 3.2配置网关转发规则
 
-* 修改`/etc/network/interfaces`（先备份），使用命令`/etc/init.d/networking restart`重新启动网络（或者使用`/sbin/ifdown `和`/sbin/ifup `）。先启用enp0s8，方便使用`ssh`连接网关主机。
+* 修改`/etc/network/interfaces`（先备份），使用命令`/etc/init.d/networking restart`重新启动网络（或者使用`/sbin/ifdown `和`/sbin/ifup `）。先启用enp0s8，方便使用`ssh`连接网关主机
 
 * 修改`etc/network/interfaces`配置文件，重新启动网卡（`enp0s3`, `enp0s8`, `enp0s9`, `enp0s10`）
 
@@ -86,7 +86,7 @@
 
 #### 3.3配置`dnsmasq`
 
-* 配置`dnsmasq`可以实现自动获取`IP`地址，可以实现域名解析。
+配置`dnsmasq`可以实现自动获取`IP`地址，可以实现域名解析。
 
 * 安装`dnsmasq`：`apt-get install dnsmasq`
 
@@ -171,7 +171,7 @@
 
 ### 7. 连通性测试
 
-连通性测试使用如下四台虚拟机进行。
+由于本机新能问题，连通性测试使用如下四台虚拟机为例进行。
 
 ![image-20200930141414783](/chap0x01/img/连通性测试-四台代表机器.png)
 
@@ -207,11 +207,11 @@
 
 ## Q&A
 
-* Q：`ipconfig /renew` 失败
+* Q：`ipconfig /renew` 失败。
 
   A： 在测试实验时，设置了固定分配，没关固定分配。
 
-* Q：`Attacker`和`GW`的`net网络`都是`10.0.2.15`
+* Q：`Attacker`和`GW`的`net网络`都是`10.0.2.15`。
 
   ![image-20200930004926637](/chap0x01/img/NAT模式ip一样.png)
 

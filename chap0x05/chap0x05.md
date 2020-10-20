@@ -1,5 +1,3 @@
-[toc]
-
 # 基于Scapy编写端口扫描器
 
 ## 实验目的
@@ -28,6 +26,34 @@
 
 ## 实验步骤
 
+### 0 端口开放与关闭
+
+端口不是独立存在的，它是依附于进程的。某个进程开启，那么它对应的端口就开启了，进程关闭，则该端口也就关闭了。
+
+* 开启80端口
+
+  ```
+  # 开启apache服务，以启用端口80
+  service apache2 start
+  
+  # 查看开启状态
+  netstat -ntulp | grep 80 
+  ```
+
+  ![open80port](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\open80port.png)
+
+* 关闭80端口
+
+  ```
+  # 关闭apache服务，以关闭端口80
+  service apache2 stop
+  
+  # 查看80端口对应的进程
+  lsof -i:80
+  ```
+
+  ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\close80port.png)
+
 ### 1 `TCP connect scan`
 
 #### 1.1 代码
@@ -36,25 +62,108 @@
 
 #### 1.2 测试开放端口
 
+* 扫描过程
 
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpConnectScan-open-Scapy.png)
+
+  * `nmap` 扫描    (`nmap -p80 -sT 172.16.111.113`)
+
+    ![tcpConnectScan-open-Nmap](/img/tcpConnectScan-open-Nmap.png)
+
+* 数据包分析
+
+  * [`tcpConnectScan-open.pcap`]()
+
+  * `scapy` 扫描
+  * `nmap`扫描
 
 #### 1.3 测试关闭端口
 
+* 扫描过程
 
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpConnectScan-closed-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpConnectScan-closed-Nmap.png)
+
+* 数据包分析
+
+  * [`tcpConnectScan-closed.pcap`]()
+  * `scapy`扫描
+  * `nmap`扫描
 
 #### 1.4 测试过滤端口
 
+* 扫描过程
 
+  * `Scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpConnectScan-filtered-Nmap.png)
+
+  * `Nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpConnectScan-filtered-Nmap.png)
+
+* 数据包分析
+
+  * [`tcpConnectScan-filtered.pcap`]()
+  * `scapy`扫描
+  * `nmap`扫描
 
 ### 2 `TCP stealth scan`
 
+#### 2.1 代码
+
+#### 2.2 测试关闭端口
+
+#### 2.3 测试开放端口
+
+#### 2.4 测试过滤端口
+
 ### 3 `TCP Xmas scan` 
+
+#### 3.1 代码
+
+#### 3.2 测试关闭端口
+
+#### 3.3 测试开放端口
+
+#### 3.4 测试过滤端口
 
 ### 4 `TCP fin scan`
 
+#### 4.1 代码
+
+#### 4.2 测试关闭端口
+
+#### 4.3 测试开放端口
+
+#### 4.4 测试过滤端口
+
 ### 5 `TCP null scan`
 
+#### 5.1 代码
+
+#### 5.2 测试关闭端口
+
+#### 5.3 测试开放端口
+
+#### 5.4 测试过滤端口
+
 ### 6 `UDP scan`
+
+#### 6.1 代码
+
+#### 6.2 测试关闭端口
+
+#### 6.3 测试开放端口
+
+#### 6.4 测试过滤端口
 
 ## 实验总结
 
@@ -64,13 +173,24 @@
 
 ## Q&A
 
+* Q1：如何关闭端口？
+
+  A：端口不是独立存在的，它是依附于进程的。某个进程开启，那么它对应的端口就开启了，进程关闭，则该端口也就关闭了。下次若某个进程再次开启，则相应的端口也再次开启。而不要纯粹的理解为关闭掉某个端口，不过可以禁用某个端口。
+
+* Q2：如果先进行开放端口扫描，然后关闭进程再次扫描的结果是`Flitered`，如果想得到`Closed`的扫描结果，可以重启目标主机。
+
+* Q3：
+
 
 
 
 
 ## 参考资料
 
+* [第五章网络扫描在线课件](https://c4pr1c3.github.io/cuc-ns-ppt/chap0x05.md.html)
+* []()
 
+* [查看端口使用状态、关闭端口方法（netstat,lsof）](https://www.cnblogs.com/alantu2018/p/8462574.html)
 
 
 

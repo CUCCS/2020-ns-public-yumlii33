@@ -1,3 +1,5 @@
+[toc]
+
 # 基于Scapy编写端口扫描器
 
 ## 实验目的
@@ -10,7 +12,7 @@
 
 - 局域网网络拓扑图
 
-  ![NS-scan-network](/img/NS-scan-network.png)
+  ![NS-scan-network](/chap0x05/img/NS-scan-network.png)
 
 ## 实验要求
 
@@ -26,19 +28,33 @@
 
 ## 实验步骤
 
-### 一、 `TCP connect scan`
+### 1 `TCP connect scan`
+
+#### 1.1 代码
+
+[tcpConnectScan.py](/code/tcpConnectScan.py)
+
+#### 1.2 测试开放端口
 
 
 
-### 二、 `TCP stealth scan`
+#### 1.3 测试关闭端口
 
-### 三、 `TCP Xmas scan` 
 
-### 四、 `TCP fin scan`
 
-### 五、 `TCP null scan`
+#### 1.4 测试过滤端口
 
-### 六、`UDP scan`
+
+
+### 2 `TCP stealth scan`
+
+### 3 `TCP Xmas scan` 
+
+### 4 `TCP fin scan`
+
+### 5 `TCP null scan`
+
+### 6 `UDP scan`
 
 ## 实验总结
 

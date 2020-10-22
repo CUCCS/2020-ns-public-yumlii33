@@ -12,9 +12,9 @@
 
 <a herf="0">0 主机状态设置</a>
 
-<a herf="1">1 TCP connect scan</a>
+[1 TCP connect scan](#1-tcp-connect-scan)
 
-<a herf="2"></a>
+[2 TCP stealth scan](#2-tcp-stealth-scan)
 
 <a herf="3"></a>
 
@@ -60,7 +60,7 @@
 
 ## <a id="实验步骤">实验步骤</a>
 
-### <a id="0">0 主机状态设置</a>
+### 0 主机状态设置
 
 端口不是独立存在的，它是依附于进程的。某个进程开启，那么它对应的端口就开启了，进程关闭，则该端口也就关闭了。
 

@@ -26,11 +26,11 @@
 
 ## 实验步骤
 
-### 0 端口开放与关闭
+### 0 主机状态设置
 
 端口不是独立存在的，它是依附于进程的。某个进程开启，那么它对应的端口就开启了，进程关闭，则该端口也就关闭了。
 
-* 开启80端口
+* `Open`状态
 
   ```
   # 开启apache服务，以启用端口80
@@ -42,7 +42,7 @@
 
   ![open80port](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\open80port.png)
 
-* 关闭80端口
+* `Close`状态
 
   ```
   # 关闭apache服务，以关闭端口80
@@ -53,6 +53,22 @@
   ```
 
   ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\close80port.png)
+  
+* `Filtered`状态
+
+  ```
+  # 安装 ufw 防火墙（Kali 2019 没有自带防火墙）
+  apt-get install ufw 
+  # 查看防火墙状态（默认 inactive）
+  ufw status
+  
+  # 开启apache服务的同时开启防火墙，模拟filtered状态
+  ufw enable
+  
+  # 关闭防火墙
+  ufw disable
+  
+  ```
 
 ### 1 `TCP connect scan`
 
@@ -119,19 +135,64 @@
 
 #### 2.1 代码
 
-#### 2.2 测试关闭端口
+* [tcpStealthScan.py]()
 
-#### 2.3 测试开放端口
+#### 2.2 测试开放端口
+
+* 扫描过程
+
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-open-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-open-Nmap.png)
+
+* 数据包分析
+
+  * [`tcpStealthScan-open.pcap`]()
+  * `scapy`扫描
+  * `nmap`扫描
+
+#### 2.3 测试关闭端口
+
+* 扫描过程
+
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-closed-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-closed-nmap.png)
+
+* 数据包分析
+
+  * [`tcpStealthScan-close.pcap`]()
 
 #### 2.4 测试过滤端口
+
+* 扫描过程
+
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-filtered-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-filtered-Nmap.png)
+
+* 数据包分析
+  * [`tcpStealthScan-filtered.pcap`]()
 
 ### 3 `TCP Xmas scan` 
 
 #### 3.1 代码
 
-#### 3.2 测试关闭端口
+#### 3.2 测试开放端口
 
-#### 3.3 测试开放端口
+#### 3.3 测试关闭端口
 
 #### 3.4 测试过滤端口
 
@@ -139,9 +200,9 @@
 
 #### 4.1 代码
 
-#### 4.2 测试关闭端口
+#### 4.2 测试开放端口
 
-#### 4.3 测试开放端口
+#### 4.3 测试关闭端口
 
 #### 4.4 测试过滤端口
 
@@ -149,9 +210,9 @@
 
 #### 5.1 代码
 
-#### 5.2 测试关闭端口
+#### 5.2 测试开放端口
 
-#### 5.3 测试开放端口
+#### 5.3 测试关闭端口
 
 #### 5.4 测试过滤端口
 
@@ -159,9 +220,9 @@
 
 #### 6.1 代码
 
-#### 6.2 测试关闭端口
+#### 6.2 测试开放端口
 
-#### 6.3 测试开放端口
+#### 6.3 测试关闭端口
 
 #### 6.4 测试过滤端口
 
@@ -203,8 +264,6 @@
 2. 网络扫描知识库的构建方法有哪些？
 
 3. 除了 `nmap` 之外，目前还有哪些流行的网络扫描器？和 `nmap` 进行优缺点对比分析
-
-
 
 
 

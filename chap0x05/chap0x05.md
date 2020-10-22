@@ -60,6 +60,10 @@
   # 开启apache服务，以启用端口80
   service apache2 start
   
+  #开启dnsmasq服务，以启用端口53
+  apt-get install dnsmasq
+  service dnsmasq start
+  
   # 查看开启状态
   netstat -ntulp | grep 80 
   ```

@@ -1,18 +1,52 @@
-# 基于Scapy编写端口扫描器
+**目录**
 
-## 实验目的
+<a herf = "标题">基于Scapy编写端口扫描器</a>
+
+<a herf="实验目的">实验目的</a>
+
+<a herf="实验环境">实验环境</a>
+
+<a herf="实验要求">实验要求</a>
+
+<a herf="实验步骤">实验步骤</a>
+
+<a herf="0">0 主机状态设置</a>
+
+<a herf="1">1 TCP connect scan</a>
+
+<a herf="2"></a>
+
+<a herf="3"></a>
+
+<a herf="4"></a>
+
+<a herf="5"></a>
+
+<a herf="6"></a>
+
+<a herf="实验总结">实验总结</a>
+
+
+
+
+
+
+
+# <a id="标题">基于Scapy编写端口扫描器</a>
+
+## <a id="实验目的">实验目的</a>
 
 - 掌握网络扫描之端口状态探测的基本原理
 
-## 实验环境
+## <a id="实验环境">实验环境</a>
 
 - `python` + [`scapy`](https://scapy.net/)
 
 - 局域网网络拓扑图
 
-  ![NS-scan-network](/chap0x05/img/NS-scan-network.png)
+  ![NS-scan-network](/img/NS-scan-network.png)
 
-## 实验要求
+## <a id="实验要求">实验要求</a>
 
 - 禁止探测互联网上的 `IP` ，严格遵守网络安全相关法律法规
 - 完成以下扫描技术的编程实现
@@ -24,9 +58,9 @@
 - 在实验报告中详细说明实验网络环境拓扑、被测试`IP`的端口状态是如何模拟的
 - （可选）复刻 `nmap` 的上述扫描技术实现的命令行参数开关
 
-## 实验步骤
+## <a id="实验步骤">实验步骤</a>
 
-### 0 主机状态设置
+### <a id="0">0 主机状态设置</a>
 
 端口不是独立存在的，它是依附于进程的。某个进程开启，那么它对应的端口就开启了，进程关闭，则该端口也就关闭了。
 
@@ -59,6 +93,7 @@
   ```
   # 安装 ufw 防火墙（Kali 2019 没有自带防火墙）
   apt-get install ufw 
+  
   # 查看防火墙状态（默认 inactive）
   ufw status
   
@@ -67,14 +102,13 @@
   
   # 关闭防火墙
   ufw disable
-  
   ```
 
-### 1 `TCP connect scan`
+### <a id="1">1 `TCP connect scan`</a>
 
 #### 1.1 代码
 
-[tcpConnectScan.py](/code/tcpConnectScan.py)
+* [tcpConnectScan.py](/code/tcpConnectScan.py)
 
 #### 1.2 测试开放端口
 
@@ -184,47 +218,182 @@
     ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan-filtered-Nmap.png)
 
 * 数据包分析
+  
   * [`tcpStealthScan-filtered.pcap`]()
 
 ### 3 `TCP Xmas scan` 
 
 #### 3.1 代码
 
+* [tcpXmasScan.py](/code/tcpXmasScan.py)
+
 #### 3.2 测试开放端口
+
+* 扫描过程
+
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan-open-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan-open-Nmap.png)
+
+* 数据包分析
+
+  * [tcpXmasScan-open.pcap]()
+
+  * `scapy`扫描
+
+    
+
+  * `nmap`扫描
+
+    
 
 #### 3.3 测试关闭端口
 
+* 扫描过程
+
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan-closed-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan-closed-Nmap.png)
+
+* 数据包分析
+
+  * [tcpXmasScan-closed.pcap]()
+  * `scapy`扫描
+  * `nmap`扫描
+
 #### 3.4 测试过滤端口
+
+* 扫描过程
+
+  * `scapy`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan-filtered-Scapy.png)
+
+  * `nmap`扫描
+
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan-filtered-Nmap.png)
+
+* 数据包分析
+
+  * [tcpXmasScan-filtered.pcap]()
+  * `scapy`扫描
+  * `nmap`扫描
 
 ### 4 `TCP fin scan`
 
 #### 4.1 代码
 
+* [tcpFinScan.py]()
+
 #### 4.2 测试开放端口
+
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
 
 #### 4.3 测试关闭端口
 
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
+
 #### 4.4 测试过滤端口
+
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
 
 ### 5 `TCP null scan`
 
 #### 5.1 代码
 
+* [tcpNullScan.py]()
+
 #### 5.2 测试开放端口
+
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
 
 #### 5.3 测试关闭端口
 
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
+
 #### 5.4 测试过滤端口
+
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
 
 ### 6 `UDP scan`
 
 #### 6.1 代码
 
+* [udpScan.py]()
+
 #### 6.2 测试开放端口
+
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
 
 #### 6.3 测试关闭端口
 
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
+
 #### 6.4 测试过滤端口
+
+* 扫描过程
+  * `scapy`扫描
+  * `nmap`扫描
+* 数据包分析
+  * []()
+  * `scapy`扫描
+  * `nmap`扫描
 
 ## 实验总结
 

@@ -20,7 +20,7 @@
 * [实验总结](#实验总结)
 * [Q&A](#Q&A)
 * [参考资料](#参考资料)
-* [课后问答题](#补充课后问答题)
+* [课后问答题](#课后问答题)
 
 # 基于Scapy编写端口扫描器
 
@@ -125,11 +125,11 @@
 
   * `scapy` 扫描
   
-    ![image-20201023105013995](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcs-o-s.png)
+    ![image-20201023105013995](/chap0x05/img/tcs-o-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023105117239](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcs-o-n.png)
+    ![image-20201023105117239](/chap0x05/img/tcs-o-n.png)
 
 #### 1.3 测试关闭端口
 
@@ -149,11 +149,11 @@
   
   * `scapy`扫描
   
-    ![image-20201023105343718](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcs-c-s.png)
+    ![image-20201023105343718](/chap0x05/img/tcs-c-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023105437099](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcs-c-n.png)
+    ![image-20201023105437099](/chap0x05/img/tcs-c-n.png)
 
 #### 1.4 测试过滤端口
 
@@ -169,15 +169,15 @@
 
 * 数据包分析
 
-  * [`tcpConnectScan-filtered.pcap`]()
+  * [`tcpConnectScan-filtered.pcap`](/chap0x05/data/tcpConnectScan-filtered.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023105654683](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcs-f-s.png)
+    ![image-20201023105654683](/chap0x05/img/tcs-f-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023105715693](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcs-f-n.png)
+    ![image-20201023105715693](/chap0x05/img/tcs-f-n.png)
 
 ### 2 `TCP stealth scan`
 
@@ -206,11 +206,11 @@
 
   * `scapy`扫描
 
-    ![image-20201023110443508](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tss-o-s.png)
+    ![image-20201023110443508](/chap0x05/img/tss-o-s.png)
 
   * `nmap`扫描
 
-    ![image-20201023110655324](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tss-o-n.png)
+    ![image-20201023110655324](/chap0x05/img/tss-o-n.png)
 
 #### 2.3 测试关闭端口
 
@@ -230,11 +230,11 @@
   
   * `scapy`扫描
   
-    ![image-20201023111110085](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tss-c-s.png)
+    ![image-20201023111110085](/chap0x05/img/tss-c-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023111220633](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tss-c-n.png)
+    ![image-20201023111220633](/chap0x05/img/tss-c-n.png)
 
 #### 2.4 测试过滤端口
 
@@ -250,15 +250,15 @@
 
 * 数据包分析
   
-  * [`tcpStealthScan-filtered.pcap`]()
+  * [`tcpStealthScan-filtered.pcap`](/chap0x05/data/tcpStealthScan-filtered.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023111319489](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tss-f-s.png)
+    ![image-20201023111319489](/chap0x05/img/tss-f-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023111355946](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tss-f-n.png)
+    ![image-20201023111355946](/chap0x05/img/tss-f-n.png)
 
 ### 3 `TCP Xmas scan` 
 
@@ -283,15 +283,15 @@
 
 * 数据包分析
 
-  * [tcpXmasScan-open.pcap]()
+  * [tcpXmasScan-open.pcap](/chap0x05/data/tcpXmasScan-open.pcap)
 
   * `scapy`扫描
 
-    ![image-20201023111510414](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\txs-o-s.png)
+    ![image-20201023111510414](/chap0x05/img/txs-o-s.png)
 
   * `nmap`扫描
 
-    ![image-20201023111549819](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\txs-o-n.png)
+    ![image-20201023111549819](/chap0x05/img/txs-o-n.png)
 
 #### 3.3 测试关闭端口
 
@@ -307,15 +307,15 @@
 
 * 数据包分析
 
-  * [tcpXmasScan-closed.pcap]()
+  * [tcpXmasScan-closed.pcap](/chap0x05/data/tcpXmasScan-closed.pcap)
   
   * `scapy`扫描
   
-    ![](\img\txs-c-s.png)
+    ![txs-c-s](/chap0x05/img/txs-c-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023111724713](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\txs-c-n.png)
+    ![txs-c-n](/chap0x05/img/txs-c-n.png)
 
 #### 3.4 测试过滤端口
 
@@ -331,15 +331,15 @@
 
 * 数据包分析
 
-  * [tcpXmasScan-filtered.pcap]()
+  * [tcpXmasScan-filtered.pcap](/chap0x05/data/tcpXmasScan-filtered.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023112156125](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\txs-f-s.png)
+    ![txs-f-s](/chap0x05/img/txs-f-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023112240334](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\txs-f-n.png)
+    ![txs-f-n](/chap0x05/img/txs-f-n.png)
 
 ### 4 `TCP fin scan`
 
@@ -361,15 +361,15 @@
   
     ![tcpFinScan-open-Nmap](/chap0x05/img/tcpFinScan-open-Nmap.png)
 * 数据包分析
-  * []() 
+  * [tcpFinScan-open.pcap](/chap0x05/data/tcpFinScan-open.pcap) 
   
   * `scapy`扫描
   
-    ![image-20201023113324329](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tfs-o-s.png)
+    ![tfs-o-s](/chap0x05/img/tfs-o-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023113410871](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tfs-o-n.png)
+    ![tfs-o-n](/chap0x05/img/tfs-o-n.png)
 
 #### 4.3 测试关闭端口
 
@@ -382,15 +382,15 @@
   
     ![tcpFinScan-closed-Nmap](/chap0x05/img/tcpFinScan-closed-Nmap.png)
 * 数据包分析
-  * []()
+  * [tcpFinScan-closed.pcap](/chap0x05/data/tcpFinScan-closed.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023113510958](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tfs-c-s.png)
+    ![tfs-c-s](/chap0x05/img/tfs-c-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023113556474](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tfs-c-n.png)
+    ![tfs-c-n](/chap0x05/img/tfs-c-n.png)
 
 #### 4.4 测试过滤端口
 
@@ -403,15 +403,15 @@
   
     ![tcpFinScan-filtered-Nmap](/chap0x05/img/tcpFinScan-filtered-Nmap.png)
 * 数据包分析
-  * []()
+  * [tcpFinScan-filtered.pcap](/chap0x05/data/tcpFinScan-filtered.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023113657893](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tfs-f-s.png)
+    ![tfs-f-s](/chap0x05/img/tfs-f-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023113741177](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tfs-f-n.png)
+    ![tfs-f-n](/chap0x05/img/tfs-f-n.png)
 
 ### 5 `TCP null scan`
 
@@ -433,15 +433,15 @@
   
     ![tcpNullScan-open-Nmap](/chap0x05/img/tcpNullScan-open-Nmap.png)
 * 数据包分析
-  * []()
+  * [tcpNullScan-open.pcap](/chap0x05/data/tcpNullScan-open.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023113834134](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tns-o-s.png)
+    ![tns-o-s](/chap0x05/img/tns-o-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023113847967](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tns-o-n.png)
+    ![tns-o-n](/chap0x05/img/tns-o-n.png)
 
 #### 5.3 测试关闭端口
 
@@ -454,15 +454,15 @@
   
     ![tcpNullScan-closed-Nmap](/chap0x05/img/tcpNullScan-closed-Nmap.png)
 * 数据包分析
-  * []()
+  * [tcpNullScan-closed.pcap](/chap0x05/data/tcpNullScan-closed.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023113914567](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tns-c-s.png)
+    ![tns-c-s](/chap0x05/img/tns-c-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023113928458](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tns-c-n.png)
+    ![tns-c-n](/chap0x05/img/tns-c-n.png)
 
 #### 5.4 测试过滤端口
 
@@ -475,15 +475,15 @@
   
     ![tcpNullScan-filtered-Nmap](/chap0x05/img/tcpNullScan-filtered-Nmap.png)
 * 数据包分析
-  * []()
+  * [tcpNullScan-filtered.pcap](/chap0x05/data/tcpNullScan-filtered.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023114001960](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tns-f-s.png)
+    ![image-20201023114001960](/chap0x05/img/tns-f-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023114017097](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tns-f-n.png)
+    ![image-20201023114017097](/chap0x05/img/tns-f-n.png)
 
 ### 6 `UDP scan`
 
@@ -505,15 +505,15 @@
   
     ![tcpNullScan-open-Nmap](/chap0x05/img/tcpNullScan-open-Nmap.png)
 * 数据包分析
-  * []()
+  * [udpScan-open.pcap](chap0x05/data/udpScan-open.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023114103064](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\us-o-s.png)
+    ![us-o-s](D/chap0x05/img/us-o-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023114115673](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\us-o-n.png)
+    ![us-o-n](/chap0x05/img/us-o-n.png)
 
 #### 6.3 测试关闭端口
 
@@ -526,15 +526,15 @@
   
     ![tcpNullScan-closed-Nmap](/chap0x05/img/tcpNullScan-closed-Nmap.png)
 * 数据包分析
-  * []()
+  * [udpScan-closed.pcap](chap0x05/data/udpScan-closed.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023114143432](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\us-c-s.png)
+    ![us-c-s](/chap0x05/img/us-c-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023114223564](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\us-c-n.png)
+    ![us-c-n](/chap0x05/img/us-c-n.png)
 
 #### 6.4 测试过滤端口
 
@@ -547,15 +547,15 @@
   
     ![tcpNullScan-filtered-Nmap](/chap0x05/img/tcpNullScan-filtered-Nmap.png)
 * 数据包分析
-  * []()
+  * [udpScan-filtered.pcap](chap0x05/data/udpScan-filtered.pcap)
   
   * `scapy`扫描
   
-    ![image-20201023114304530](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\us-f-s.png)
+    ![us-f-s](/chap0x05/img/us-f-s.png)
   
   * `nmap`扫描
   
-    ![image-20201023114320537](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\us-f-n.png)
+    ![us-f-n](/chap0x05/img/us-f-n.png)
 
 ## 实验总结
 
@@ -575,16 +575,13 @@
 
 
 
-
-
 ## 参考资料
 
 * [第五章网络扫描在线课件](https://c4pr1c3.github.io/cuc-ns-ppt/chap0x05.md.html)
-* []()
-
+* [NMAP 端口扫描](https://www.jianshu.com/p/909c7d72035c)
 * [查看端口使用状态、关闭端口方法（netstat,lsof）](https://www.cnblogs.com/alantu2018/p/8462574.html)
-
-
+* [如何用Scapy写一个端口扫描器](https://blog.csdn.net/think_ycx/article/details/50898096)
+* [scapy官方文档](https://scapy.readthedocs.io/en/latest/)
 
 ## 课后问答题
 

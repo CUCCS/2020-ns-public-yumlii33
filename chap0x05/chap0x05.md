@@ -100,9 +100,12 @@
 
 ### 1 `TCP connect scan`
 
+![image-20201023073631527](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpConnectScan)
+
 #### 1.1 代码
 
-* [tcpConnectScan.py](/code/tcpConnectScan.py)
+* [tcpConnectScan.py](/codes/tcpConnectScan.py)
+* `nmap -sT -p80 ip`
 
 #### 1.2 测试开放端口
 
@@ -118,7 +121,7 @@
 
 * 数据包分析
 
-  * [`tcpConnectScan-open.pcap`]()
+  * [`tcpConnectScan-open.pcap`](/codes/tcpConnectScan-open.pacp)
 
   * `scapy` 扫描
   * `nmap`扫描
@@ -161,9 +164,12 @@
 
 ### 2 `TCP stealth scan`
 
+![image-20201023073812107](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpStealthScan)
+
 #### 2.1 代码
 
 * [tcpStealthScan.py]()
+* `nmap -sS -p80 ip`
 
 #### 2.2 测试开放端口
 
@@ -217,9 +223,12 @@
 
 ### 3 `TCP Xmas scan` 
 
+![image-20201023074138311](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpXmasScan)
+
 #### 3.1 代码
 
 * [tcpXmasScan.py](/code/tcpXmasScan.py)
+* `nmap -p80 -sX ip`
 
 #### 3.2 测试开放端口
 
@@ -283,17 +292,25 @@
 
 ### 4 `TCP fin scan`
 
+![image-20201023073956544](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan)
+
 #### 4.1 代码
 
 * [tcpFinScan.py]()
+* `nmap -sF -p80 172.16.111.113`
 
 #### 4.2 测试开放端口
 
 * 扫描过程
   * `scapy`扫描
-  * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan-open-Scapy.png)
+  
+  * `nmap`扫描 
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan-open-Nmap.png)
 * 数据包分析
-  * []()
+  * []() 
   * `scapy`扫描
   * `nmap`扫描
 
@@ -301,17 +318,31 @@
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan-closed-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan-closed-Nmap.png)
 * 数据包分析
   * []()
+  
   * `scapy`扫描
+  
+    
+  
   * `nmap`扫描
 
 #### 4.4 测试过滤端口
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan-filtered-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpFinScan-filtered-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描
@@ -319,15 +350,23 @@
 
 ### 5 `TCP null scan`
 
+![image-20201023074248501](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan)
+
 #### 5.1 代码
 
 * [tcpNullScan.py]()
+* `nmap -sN ip`
 
 #### 5.2 测试开放端口
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-open-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-open-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描
@@ -337,7 +376,12 @@
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-closed-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-closed-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描
@@ -347,7 +391,12 @@
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-filtered-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-filtered-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描
@@ -355,15 +404,23 @@
 
 ### 6 `UDP scan`
 
+![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\udpScan.png)
+
 #### 6.1 代码
 
 * [udpScan.py]()
+* `nmap -sU -p53 ip`
 
 #### 6.2 测试开放端口
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-open-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-open-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描
@@ -373,7 +430,12 @@
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-closed-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-closed-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描
@@ -383,7 +445,12 @@
 
 * 扫描过程
   * `scapy`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-filtered-Scapy.png)
+  
   * `nmap`扫描
+  
+    ![](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x05\img\tcpNullScan-filtered-Nmap.png)
 * 数据包分析
   * []()
   * `scapy`扫描

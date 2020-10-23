@@ -105,7 +105,7 @@
 #### 1.1 代码
 
 * [tcpConnectScan.py](/chap0x05/code/tcpConnectScan.py)
-* `nmap -sT -p80 172.16.111.113`
+* `nmap -sT -p80 ip`
 
 #### 1.2 测试开放端口
 
@@ -186,7 +186,7 @@
 #### 2.1 代码
 
 * [tcpStealthScan.py](/chap0x05/code/tcpStealthScan.py)
-* `nmap -sS -p80 172.16.111.113`
+* `nmap -sS -p80 ip`
 
 #### 2.2 测试开放端口
 
@@ -267,7 +267,7 @@
 #### 3.1 代码
 
 * [tcpXmasScan.py](/chap0x05/code/tcpXmasScan.py)
-* `nmap -p80 -sX 172.16.111.113`
+* `nmap -p80 -sX ip`
 
 #### 3.2 测试开放端口
 
@@ -420,7 +420,7 @@
 #### 5.1 代码
 
 * [tcpNullScan.py](/chap0x05/code/tcpNullScan.py)
-* `nmap -sN 172.16.111.113`
+* `nmap -sN ip`
 
 #### 5.2 测试开放端口
 
@@ -492,7 +492,7 @@
 #### 6.1 代码
 
 * [udpScan.py](/chap0x05/code/udpScan.py)
-* `nmap -sU -p53 172.16.111.113`
+* `nmap -sU -p53 ip`
 
 #### 6.2 测试开放端口
 

@@ -8,11 +8,11 @@
 
 [实验步骤](#实验步骤)
 
-​	[PART1 sshHoneypot](#PART1-sshHoneypot)
+* PART1 sshHoneypot
 
-​	[PART2 Cowrie](#PART2-Cowrie)
+* PART2 Cowrie
 
-​	[PART3 Canarytokens](#PART3-Canarytokens)
+* PART3 Canarytokens
 
 [实验总结](#实验总结)
 
@@ -61,8 +61,8 @@
 * 添加`docker-ce`的`apt`源
 
   ```shell
-  apt-get update
-  apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+  sudo apt update
+  sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
   ```
 
 * 添加`docker`需要的密钥
@@ -86,13 +86,15 @@
   
   #直接运行会报错，没找到合适的docker更新源，先添加docker源
   sudo echo "deb https://download.docker.com/linux/ubuntu zesty edge" > /etc/apt/sources.list.d/docker.list
+  sudo apt update
   ```
 
 * 开启`docker`服务并测试是否安装成功
 
   ```shell
   sudo systemctl start docker
-  sudo docker run hello-world
+  sudo docker run hello-world #可能报错，多执行几遍
+   
   ```
 
   ![image-20201215112342254](/chap0x0b/img/开启docker服务并测试是否安装成功.png)
@@ -286,16 +288,28 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
 
 * 修改配置文件
 
-  `frontend.env.dist`
+  `frontend.env`
 
   ```shell
   CANARY_DOMAINS=proshare.net 
   CANARY_NXDOMAINS=proshare.net
   ```
 
-  `switchboard.env.dist`
+  `switchboard.env`
 
   ![image-20201216113859685](/chap0x0b/img/switch配置修改.png)
+
+  ```shell
+  CANARY_MAILGUN_DOMAIN_NAME=MOLLYY
+  CANARY_MAILGUN_API_KEY=key123123
+  #CANARY_MANDRILL_API_KEY=
+  #CANARY_SENDGRID_API_KEY=
+  CANARY_PUBLIC_IP=162.243.117.221
+  CANARY_PUBLIC_DOMAIN=proshare.net
+  CANARY_ALERT_EMAIL_FROM_ADDRESS=noreply@proshare.net
+  CANARY_ALERT_EMAIL_FROM_DISPLAY=Canarytoken
+  CANARY_EMAIL_SUBJECT=Canarytoken
+  ```
 
 * 启动
 
@@ -303,11 +317,11 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
   sudo docker-compose up
   ```
 
-* 运行`Canarytokens`应用
+  ![image-20201217074118741](/chap0x0b/img/启动成功.png)
 
-* 
+* 正常应该能通过IP地址访问，但是实际操作访问不通，时间原因没有继续做。
 
-
+  ![image-20201217074715792](/chap0x0b/img/无法通过ip地址访问.png)
 
 ## 实验总结
 
@@ -342,7 +356,28 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
 
   修改`frontend.env.dist`的文件名为`frontend.env`，`switchboard.env.dist`的文件名为`switchboard.env`。
 
+  ```shell
+  sudo mv frontend.env.dist frontend.env
+  sudo mv switchboard.env.dist switchboard.env
+  ```
+  
   成功。
+  
+* docker-compose up 报错
+
+  ![image-20201216184431355](/chap0x0b/img/空间不够报错.png)
+
+  解决：
+  
+  查看磁盘空间
+  
+  ![image-20201216215540005](/chap0x0b/img/磁盘空间.png)
+  
+  磁盘空间空间不足，无法安装。
+  
+  网上搜索可以扩展磁盘空间，但是由于之前用的是多重加载建立的`Victim`主机，操作怕不成功，而且多重加载的镜像重新建立一个虚拟机非常快，所以选择重建。
+  
+  （忘了备份docker环境，还要重装docker...）
 
 ## 参考资料
 
@@ -351,6 +386,7 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
 * [random-robbie/docker-ssh-honey](https://github.com/random-robbie/docker-ssh-honey)
 * [如何用Canarytokens搭建蜜罐并检测可疑入侵](https://blog.csdn.net/qq_40907977/article/details/106101899)
 * [第十一章课件](https://c4pr1c3.github.io/cuc-ns-ppt/chap0x11.md.html#/title-slide)
+* [解决Virtualbox中no space left on device问题](https://www.leeguangxing.cn/blog_post_82.html)
 
-## 课后问答题
+
 

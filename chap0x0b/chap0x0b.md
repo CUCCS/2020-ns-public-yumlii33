@@ -199,7 +199,7 @@ Cowrie是一种中到高交互性的SSH和Telnet蜜罐。
   sudo docker run -p 2222:2222 cowrie/cowrie
   ```
 
-  ![image-20201215150724478](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\搭建cowrie环境.png)
+  ![image-20201215150724478](/chap0x0b/img/搭建cowrie环境.png)
   
 * 查看日志
 
@@ -214,51 +214,51 @@ Cowrie是一种中到高交互性的SSH和Telnet蜜罐。
 
 * 初次发起连接请求就有记录
 
-  ![image-20201216090515851](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐初次连接.png)
+  ![image-20201216090515851](/chap0x0b/img/cowrie蜜罐初次连接.png)
 
 * 使用普通用户登录不成功，且三次不成功后自动结束，符合正常密码输错的情况。使用`root`用户登录成功，进`shell`界面。
 
-* ![image-20201216091148161](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐root登录成功.png)
+* ![image-20201216091148161](/chap0x0b/img/cowrie蜜罐root登录成功.png)
 
 * 长时间不适用会自动退出ssh连接。二次连接直接输入密码，不用输入`yes`，也和正常的`ssh`一致。测试用不正确的密码连接，看起来也成功登录了！体现的蜜罐思想。
 
-  ![image-20201216091954778](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐不正确的密码也登录成功了.png)
+  ![image-20201216091954778](/chap0x0b/img/cowrie蜜罐不正确的密码也登录成功了.png)
 
 * 如果`Vicitm`主机的蜜罐环境重启，连接时会显示更新`host key`
 
-  ![image-20201216100055828](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐重启后再次连接.png)
+  ![image-20201216100055828](/chap0x0b/img/cowrie蜜罐重启后再次连接.png)
 
 * 查看日志文件。和前面不同，这不能再容器里实时显示，会在本次连接结束后以`json`的格式保存日志，包含了用户的操作过程和基本信息。
 
-  ![image-20201216100354894](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐日志.png)
+  ![image-20201216100354894](/chap0x0b/img/cowrie蜜罐日志.png)
 
 **在蜜罐系统中执行常用操作**
 
 * 切换用户操作`su molly`
 
-  ![image-20201216101159603](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐切换用户命令无反应.png)
+  ![image-20201216101159603](/chap0x0b/img/cowrie蜜罐切换用户命令无反应.png)
 
-* 网络连通性测试操作`ping www.baidu.com`、`curl https://www.baidu.com
+* 网络连通性测试操作`ping www.baidu.com`、`curl https://www.baidu.com`
 
-  ![image-20201216101800334](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐网络连通性测试.png)
+  ![image-20201216101800334](/chap0x0b/img/cowrie蜜罐网络连通性测试.png)
 
 * 忘记停止`ping`命令就去写报告，结果还是自动断开连接了，但是在`Victim`主机里，命令行一直在输出`Connection was probably lost. Could not write to terminal`重新连接后也继续写，可能是没有识别出来该会话已经断开。需要重新启动才行。
 
-  ![image-20201216101954848](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐一直输出有点问题.png)
+  ![image-20201216101954848](/chap0x0b/img/cowrie蜜罐一直输出有点问题.png)
 
 * `curl`输入错误的`url`，发现不会返回错误信息，并且不能手动终止，只能等待超时退出。
 
-  ![image-20201216103025868](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐curl没有报错.png)
+  ![image-20201216103025868](/chap0x0b/img/cowrie蜜罐curl没有报错.png)
 
 * 安装包操作`apt-get install xxx`和`apt-get update`
 
-  ![image-20201216104443131](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐安装包.png)
+  ![image-20201216104443131](/chap0x0b/img/cowrie蜜罐安装包.png)
 
 **nmap扫描**
 
 发现`nmap`端口扫描不会被记录。
 
-![image-20201216105752833](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐nmap扫描.png)
+![image-20201216105752833](/chap0x0b/img/cowrie蜜罐nmap扫描.png)
 
 ## PART3 Canarytokens
 
@@ -295,7 +295,7 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
 
   `switchboard.env.dist`
 
-  ![image-20201216113859685](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\switch配置修改.png)
+  ![image-20201216113859685](/chap0x0b/img/switch配置修改.png)
 
 * 启动
 
@@ -336,7 +336,7 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
   
 * 修改配置文件的时候，报错：
 
-  ![image-20201216114312713](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\配置文件报错.png)
+  ![image-20201216114312713](/chap0x0b/img/配置文件报错.png)
 
   解决：
 
@@ -346,7 +346,11 @@ honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们
 
 ## 参考资料
 
-
+* [droberson/ssh-honeypot](https://github.com/droberson/ssh-honeypot)
+* [cowrie/cowrie](https://github.com/cowrie/cowrie)
+* [random-robbie/docker-ssh-honey](https://github.com/random-robbie/docker-ssh-honey)
+* [如何用Canarytokens搭建蜜罐并检测可疑入侵](https://blog.csdn.net/qq_40907977/article/details/106101899)
+* [第十一章课件](https://c4pr1c3.github.io/cuc-ns-ppt/chap0x11.md.html#/title-slide)
 
 ## 课后问答题
 

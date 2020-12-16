@@ -1,8 +1,26 @@
-# 常见蜜罐体验和探索
+常见蜜罐体验和探索
 
+[实验目的](#实验目的)
 
+[实验环境](#实验环境)
 
-## 验目的
+[实验要求](#实验要求)
+
+[实验步骤](#实验步骤)
+
+​	[PART1 sshHoneypot](#PART1-sshHoneypot)
+
+​	[PART2 Cowrie](#PART2-Cowrie)
+
+​	[PART3 Canarytokens](#PART3-Canarytokens)
+
+[实验总结](#实验总结)
+
+[Q&A](#Q&A)
+
+[参考资料](#参考资料)
+
+## 实验目的
 
 - 了解蜜罐的分类和基本原理
 - 了解不同类型蜜罐的适用场合
@@ -30,7 +48,11 @@
 
 在`Victim-Kali-exp11`中搭建蜜网，`Attacker-Kali-exp11`攻击`Victim-Kali-exp11`。
 
-## PART1 ssh-Honeypot
+## PART1 sshHoneypot
+
+```
+这是是一种极低交互式的简易蜜罐。
+```
 
 ### 1 蜜罐搭建
 
@@ -159,17 +181,146 @@
 
 ## PART2 Cowrie
 
+```
+Cowrie是一种中到高交互性的SSH和Telnet蜜罐。
+```
+
 ### 1 蜜罐搭建
+
+* 在`docker`中安装`Cowrie`
+
+  ```shell
+  sudo docker pull cowrie/cowrie
+  ```
+
+* 启动`cowrie`，使用端口`2222`
+
+  ```shell
+  sudo docker run -p 2222:2222 cowrie/cowrie
+  ```
+
+  ![image-20201215150724478](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\搭建cowrie环境.png)
+  
+* 查看日志
+
+  ```shell
+  sudo docker exec -i -t container_id bash #进入容器
+  cat ~/cowrie-git/var/log/cowrie/cowrie.json #查看日志
+  ```
 
 ### 2 模仿攻击
 
+**`Attacker-Kali-exp11`对蜜罐所在主机端口进行`ssh`连接**
+
+* 初次发起连接请求就有记录
+
+  ![image-20201216090515851](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐初次连接.png)
+
+* 使用普通用户登录不成功，且三次不成功后自动结束，符合正常密码输错的情况。使用`root`用户登录成功，进`shell`界面。
+
+* ![image-20201216091148161](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐root登录成功.png)
+
+* 长时间不适用会自动退出ssh连接。二次连接直接输入密码，不用输入`yes`，也和正常的`ssh`一致。测试用不正确的密码连接，看起来也成功登录了！体现的蜜罐思想。
+
+  ![image-20201216091954778](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐不正确的密码也登录成功了.png)
+
+* 如果`Vicitm`主机的蜜罐环境重启，连接时会显示更新`host key`
+
+  ![image-20201216100055828](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐重启后再次连接.png)
+
+* 查看日志文件。和前面不同，这不能再容器里实时显示，会在本次连接结束后以`json`的格式保存日志，包含了用户的操作过程和基本信息。
+
+  ![image-20201216100354894](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐日志.png)
+
+**在蜜罐系统中执行常用操作**
+
+* 切换用户操作`su molly`
+
+  ![image-20201216101159603](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐切换用户命令无反应.png)
+
+* 网络连通性测试操作`ping www.baidu.com`、`curl https://www.baidu.com
+
+  ![image-20201216101800334](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐网络连通性测试.png)
+
+* 忘记停止`ping`命令就去写报告，结果还是自动断开连接了，但是在`Victim`主机里，命令行一直在输出`Connection was probably lost. Could not write to terminal`重新连接后也继续写，可能是没有识别出来该会话已经断开。需要重新启动才行。
+
+  ![image-20201216101954848](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐一直输出有点问题.png)
+
+* `curl`输入错误的`url`，发现不会返回错误信息，并且不能手动终止，只能等待超时退出。
+
+  ![image-20201216103025868](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐curl没有报错.png)
+
+* 安装包操作`apt-get install xxx`和`apt-get update`
+
+  ![image-20201216104443131](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐安装包.png)
+
+**nmap扫描**
+
+发现`nmap`端口扫描不会被记录。
+
+![image-20201216105752833](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\cowrie蜜罐nmap扫描.png)
+
 ## PART3 Canarytokens
+
+```
+honeytokens是可以“以快速的，便捷的方式帮助防御方发现他们已经被攻击了的客观事实”。为了实现这个目标，我们可以使用Canarytokens应用来生成token,当入侵者访问或者使用由Canarytokens应用生成的honeytoken时，该工具将会通过邮件通知我们，并附带异常事件的细节说明。
+```
+
+### 3.1 环境配置
+
+* 克隆仓库并进入目录
+
+  ```
+  git clone https://github.com/thinkst/canarytokens-docker
+  cd canarytokens-docker
+  ```
+
+* 安装`docker-compose`
+
+  ```
+  sudo apt update
+  sudo apt-get install libyaml-dev # 安装依赖包
+  sudo apt-get install python3-pip python-dev 
+  sudo pip install -U docker-compose
+  ```
+
+* 修改配置文件
+
+  `frontend.env.dist`
+
+  ```shell
+  CANARY_DOMAINS=proshare.net 
+  CANARY_NXDOMAINS=proshare.net
+  ```
+
+  `switchboard.env.dist`
+
+  ![image-20201216113859685](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\switch配置修改.png)
+
+* 启动
+
+  ```shell
+  sudo docker-compose up
+  ```
+
+* 运行`Canarytokens`应用
+
+* 
 
 
 
 ## 实验总结
 
 * 常见的蜜罐识别和检测方法
+
+  * `ssh`连接的时候，测试不同密码和用户，有时输入什么密码都可以登录成功，而且登录时的提示信息有不同，可以感觉出来不是正常的系统。
+  * 执行一些常见命令的时候，比如在`root`用户下执行`apt update`竟然提示权限错误，显然是不正常的，安装已安装的包不会提示已存在，安装错误的包不会提示找不到源，这也能判断出错误。
+  * 通过查看一些特殊文件，特殊路径，如果没有应有的文件，也是不正常的。
+  * 课堂上老师提到，可以通过检查环境信息来分辨。因为很容易就能知道进行物理机器应有的配置，版本号等信息，而搭建的蜜罐往往在这方面做的不够完善，容易露陷。
+  * 网上查到到，用`Nmap`等`Scan`工具，同一个机器同时开放很多Port的。
+  * 如果是`VMware`虚拟机，重点关注MAC地址的范围。
+
+  
 
 ## Q&A
 
@@ -182,6 +333,16 @@
   ```shell
   echo "deb https://download.docker.com/linux/ubuntu zesty edge" > /etc/apt/sources.list.d/docker.list
   ```
+  
+* 修改配置文件的时候，报错：
+
+  ![image-20201216114312713](D:\Project_NetworkSecurityProjects\2020-ns-public-yumlii33\chap0x0b\img\配置文件报错.png)
+
+  解决：
+
+  修改`frontend.env.dist`的文件名为`frontend.env`，`switchboard.env.dist`的文件名为`switchboard.env`。
+
+  成功。
 
 ## 参考资料
 
